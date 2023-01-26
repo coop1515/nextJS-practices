@@ -20,8 +20,8 @@ const nextConfig = {
   async redirects(){
     return [
       {
-        // source:"/contact/:path*", // path도 그대로 따라감. source의 url을 치면 destination의 url로 간다.
-        // destination:"/form/:path*",
+        // source:"/contact/:path*", // source의 url을 치면 destination의 url로 간다.
+        // destination:"/form/:path*", // path도 그대로 따라감. ex) source의 path가 1이면 destination의 path 도 1임.
         source:"/contact", 
         destination:"/form",
         permanent:false,
@@ -32,6 +32,10 @@ const nextConfig = {
     return [{
       source: "/api/movies",
       destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
+    },
+    {
+      source: "/api/movies/:id",
+      destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`
     }]
   }
 }
