@@ -62,16 +62,20 @@ export default function Home({results}) {
     const router = useRouter();
     const onClick = (id, title) => {
         // router.push(`/movies/${id}`)
-        router.push({
-            pathname: `/movies/${id}`,
-            query: {
-                title
-            }
-        },
-        // as는 url을 가려줌. 사용하지 않으면 pathname과 query의 데이터들이 url에 표시됨.
-        `/movies/${id}`
-        )
+
+    //     router.push({
+    //         pathname: `/movies/${id}`,
+    //         query: {
+    //             title
+    //         }
+    //     },
+    //     // as는 url을 가려줌. 사용하지 않으면 pathname과 query의 데이터들이 url에 표시됨.
+    //     `/movies/${id}`
+    //     )
+
+    router.push(`/movies/${title}/${id}`)
     }
+    
 
     return (
         <div className="container">
@@ -80,12 +84,16 @@ export default function Home({results}) {
             {results?.map((movie) => (
                 <Link 
                 // href = {`/movies/${movie.id}`}
-                href={{
-                    pathname: `/movies/${movie.id}`,
-                    query: {
-                        title: movie.original_title,
-                    },
-            }} as={`/movies/${movie.id}`}
+
+            //     href={{
+            //         pathname: `/movies/${movie.id}`,
+            //         query: {
+            //             title: movie.original_title,
+            //         },
+            // }} as={`/movies/${movie.id}`}
+
+                 href = {`/movies/${movie.original_title}/${movie.id}`}
+
                  key={movie.id} onClick= {() => onClick(movie.id, movie.original_title)}>
                     <div key={movie.id}>
                         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
